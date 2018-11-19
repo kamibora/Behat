@@ -1,0 +1,21 @@
+default:
+    extensions:
+        Behat\MinkExtension:
+            base_url: http://localhost:8000
+            browser_name: chrome
+            goutte: ~
+            selenium2:
+                capabilities:
+                    chrome:
+                        #binary: /usr/bin/google-chrome
+                        switches:
+                          - "--disable-gpu"
+
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: features/bootstrap/bootstrap.php
+                class: App\Kernel
+                env: dev
+    suites:
+        default:
+            contexts: [FeatureContext, CardManagerContext, ShoppingCartContext, WebContext]
